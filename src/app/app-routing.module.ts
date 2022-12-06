@@ -2,14 +2,28 @@ import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
+
   {
-    path: 'home',
-    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
+    path: 'checklists',
+    loadChildren: () => import('./home/home.module').then( (m) => m.HomePageModule)
   },
+  // if path empty -> go to checklists
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: '/checklists',
     pathMatch: 'full'
+  },
+  {
+    path: 'intro',
+    loadChildren: () => import('./intro/intro.module').then( (m) => m.IntroPageModule)
+  },
+  {
+    path: 'checklist',
+    loadChildren: () => import('./checklist/checklist.module').then( (m) => m.ChecklistPageModule)
+  },
+  {
+    path: 'checklists/:id',
+    loadChildren: () => import('./checklist/checklist.module').then( (m) => m.ChecklistPageModule)
   },
 ];
 
@@ -19,4 +33,5 @@ const routes: Routes = [
   ],
   exports: [RouterModule]
 })
+
 export class AppRoutingModule { }
